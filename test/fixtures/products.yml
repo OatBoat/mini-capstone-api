@@ -2,16 +2,14 @@
 
 one:
   name: MyString
-  : MyString
   price: 1
   image_url: MyString
   description: MyString
-  : MyString
+
 
 two:
   name: MyString
-  : MyString
   price: 1
   image_url: MyString
   description: MyString
-  : MyString
+
