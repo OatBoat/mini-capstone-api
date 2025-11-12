@@ -32,6 +32,12 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       puts "----------"
       assert_response 200
     end
+
+
+    assert_difference "Product.count", 0 do
+      post "/products.json", params: {}
+      assert_response 201
+    end
   end
 
   test "update" do

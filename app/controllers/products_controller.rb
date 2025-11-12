@@ -12,17 +12,25 @@ def show
   end
 
    def create
-    @product = Product.create(
+    @product = Product.new(
       id: params[:id],
       name: params[:name],
       price: params[:price],
       image_url: params[:image_url],
-      description: params[:description]
+      description: params[:description],
+      supplierID: params[:supplierID]
 
     )
 
-    render template: "products/show"
+     if @product.save
+      render :show, status: :created
+    else
+      render json: { errors: @product.errors }, status: :bad_request
+    end
   end
+
+  #   render template: "products/show"
+  # end
 
  def update
     @product = Products.find(params[:id])
@@ -32,7 +40,8 @@ def show
       name: params[:name] || @product.name,
       price: params[:price] || @product.price,
       image_url: params[:image_url] || @product.image_url,
-      description: params[:description] || @product.description
+      description: params[:description] || @product.description,
+      supplierID: params[:supplierID] || @product.supplierID
     )
 
     render :show

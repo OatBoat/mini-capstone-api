@@ -1,4 +1,15 @@
 class Product < ApplicationRecord
+## Validations
+  validates :name, presence: {message: "This must be populated"}
+  # validates :price, numericality: { greater_than: 0.5 }
+  validates :description, presence: true
+  # validates :part_number, format: { with: /\A\d{3}-\d{4}\z/, message: "must be in the format XXX-XXXX" }
+
+
+
+
+
+
 # • Create a model method called `is_discounted?` that returns true if an item is less than or equal to $10 and false otherwise.
 def is_discounted
   if price <= 10
@@ -27,4 +38,9 @@ end
 def friendly_created_at
     created_at.strftime("%A, %b %d")
 end
+
+def supplier
+    Supplier.find_by(id: supplier_id)
+end
+
 end
